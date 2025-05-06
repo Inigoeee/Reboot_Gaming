@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affordable Custom PCs by Inigo Avila</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Smooth scrolling for anchor links */
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0b0b0b;
+      --surface: #1a1a1a;
+      --text: #e0e0e0;
+      --accent-purple: #6a0dad;
+      --accent-red: #ff3465;
+      --accent-hover: #ff1f5b;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      position: relative;
+      height: 100vh;
+      background:  url('BG.PNG') center/cover no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text);
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2; /* Ensure content is above the overlay */
+      max-width: 800px;
+      padding: 0 1rem;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .hero-content h1 .highlight {
+      color: var(--accent-red);
+      text-shadow: 0 0 15px var(--accent-red);
+    }
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #ddd;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-red));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, var(--accent-hover), var(--accent-red));
+      transform: scale(1.1);
+    }
+    nav {
+      background: var(--surface);
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: var(--text);
+      margin: 0 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color var(--transition);
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -5px;
+      width: 0%; height: 2px;
+      background: var(--accent-purple);
+      transition: width var(--transition);
+    }
+    nav a:hover {
+      color: var(--accent-purple);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .gallery {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  .gallery-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth easing */
+    gap: 1rem; /* Add spacing between items */
+  }
+
+  .gallery-item {
+    flex: 0 0 calc(25% - 1rem); /* 4 items visible with spacing */
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    height: 800px;
+  }
+
+  .gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 1.5rem;
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+
+  .arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .arrow.left {
+    left: 1rem;
+  }
+
+  .arrow.right {
+    right: 1rem;
+  }
+    main { max-width: 900px; margin: 3rem auto; padding: 0 1rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { color: var(--accent-purple); margin-bottom: 1rem; }
+    .faq-item { margin-bottom: 1rem; }
+    .faq-item summary { cursor: pointer; font-weight: bold; background: var(--surface); padding: 0.75rem; border-radius: 5px; border-left: 4px solid var(--accent-red); }
+    .faq-item[open] summary { border-left-color: var(--accent-purple); }
+    .faq-item div { padding: 0.75rem 1rem; background: #262626; border-radius: 0 5px 5px 5px; }
+    form { background: var(--surface); padding: 1rem; border-radius: 8px; }
+    form .form-group { margin-bottom: 1rem; }
+    form label { display: block; margin-bottom: 0.5rem; }
+    form input, form textarea { width: 100%; padding: 0.5rem; border: 1px solid #333; border-radius: 4px; background: #111; color: var(--text); }
+    form button { background: var(--accent-red); border: none; padding: 0.75rem 1.5rem; font-size: 1rem; border-radius: 5px; cursor: pointer; transition: background var(--transition); }
+    form button:hover { background: var(--accent-hover); }
+    footer { text-align: center; padding: 1rem; color: #777; font-size: 0.9rem; }
+    .price-box {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border-left: 4px solid var(--accent-purple);
+    }
+    .price-box h3 {
+      color: var(--accent-purple);
+      margin-bottom: 0.5rem;
+    }
+    .price-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .price-box li {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .benchmark-video {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem auto; /* Center horizontally */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    text-align: center; /* Center the text */
+  }
+
+  .benchmark-video h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-purple);
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero-content">
+      <h1>Pre-loved <span class="highlight">Gaming PCs</span></h1>
+      <p>Unleash your gaming potential with  mid-range performance rigs at unbeatable prices.</p>
+      <a href="#gallery" class="btn-primary">View Pics</a>
+    </div>
+  </header>
+  <nav>
+    <a href="#gallery">Gallery</a>
+    <a href="#faqs">FAQs</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="gallery" id="gallery">
+    <button class="arrow left" onclick="scrollGallery(1)">&#10094;</button>
+    <div class="gallery-track" id="track">
+      <div class="gallery-item"><img src="IMG_6785.png" alt="Pic 1"></div>
+      <div class="gallery-item"><img src="IMG_6786.png" alt="Pic 2"></div>
+      <div class="gallery-item"><img src="IMG_6791.png" alt="Pic 3"></div>
+      <div class="gallery-item"><img src="IMG_6805.png" alt="Pic 4"></div>
+      <div class="gallery-item"><img src="IMG_6805.png" alt="Pic 5"></div>
+      <div class="gallery-item"><img src="IMG_6806.png" alt="Pic 6"></div>
+      <div class="gallery-item"><img src="IMG_6787.png" alt="Pic 7"></div>
+      <div class="gallery-item"><img src="IMG_6788.png" alt="Pic 8"></div>
+      <div class="gallery-item"><img src="a14a3c06-f47b-4bb1-beb6-f52e48f03f7d.jfif" alt="Pic 9"></div>
+      <div class="gallery-item"><img src="IMG_6962.jpg" alt="Pic 10"></div>
+      <div class="gallery-item"><img src="ken.jpg" alt="Pic 11"></div>
+      <div class="gallery-item"><img src="IMG_6961.PNG" alt="Pic 12"></div>
+    </div>
+    <button class="arrow right" onclick="scrollGallery(-1)">&#10095;</button>
+  </div>
+
+  <!-- Add the benchmarking video below the gallery -->
+  <div class="benchmark-video" style="text-align: center; margin-top: 2rem;">
+    <h2 style="color: var(--accent-purple); margin-bottom: 1rem;">PC Benchmark Showcase</h2>
+    <iframe 
+      width="100%" 
+      height="480" 
+      src="https://www.youtube.com/embed/_Ij0ZmZolic" 
+      title="PC Benchmark Showcase" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen 
+      style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+    </iframe>
+  </div>
+  <main>
+    <section id="faqs">
+      <h2>Frequently Asked Questions</h2>
+      <details class="faq-item">
+        <summary>Specs</summary>
+        <div>
+          <ul>
+            <li>CPU: Intel Core <i5-7400></i5-7400></li>
+            <li>GPU:  RX 580 8GB</li>
+            <li>Motherboard: Gigabyte H110MK-H</li>
+            <li>RAM: 16GB DDR4</li>
+            <li>Storage: 256GB SSD, 1TB HDD w 1000+ Games  </li>
+            <li>Power Supply: 700W</li>
+            <li>Case: Keytech T-1000 Mid Tower Tempered Glass Black</li>
+          </ul>
+      </details>
+      <details class="faq-item">
+        <summary> Games Included</summary>
+        <div>We have 1000+ Games available, Click here to view <a style="color: #ff3465;" href="https://docs.google.com/spreadsheets/u/0/d/1rhyijslK7eWLwPeqOrgSy6rKtYrElSmk8Z1MWl586Uc/htmlview#gid=0">list</a> </div>
+      </details>
+      <details class="faq-item">
+        <summary> Do you offer warranty?</summary>
+        <div>We offer a 2-day warranty, UnlimIted Testing if picK up</div>
+      </details>
+      <details class="faq-item">
+        <summary> Can I customize or upgrade later?</summary>
+        <div>Yes, we provide custom builds, repairs, cleaning, and upgrades, including laptop upgrades.</div>
+      </details>
+      <details class="faq-item">
+        <summary> Price list</summary>
+        <div> 
+           <li>₱10,000 - PC only without GPU </li>
+           <li>₱11,500 - PC with Monitor, Mouse, Keyboard - No GPU </li>
+          <li>₱14,000 – PC only 💻 with GPU</li>
+          <li>₱15,200 – PC + NVision 20" Monitor + Acer Mouse & Keyboard 🖱️⌨️</li>
+      </details>
+    </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p style="margin-bottom: 1rem; color: var(--text);">
+        Reach out to us on Facebook for inquiries and updates!
+      </p>
+      <a href="https://www.facebook.com/marisol.suonavila" target="_blank" 
+         style="display: inline-block; padding: 1rem 2rem; font-size: 1.2rem; color: #fff; background: linear-gradient(90deg, var(--accent-purple), var(--accent-red)); border: none; border-radius: 50px; text-decoration: none; transition: background var(--transition), transform var(--transition); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+        Visit Our Facebook Page
+      </a>
+    </section>
+  </main>
+  <footer>&copy; 2025 Inigo Avila. All rights reserved.</footer>
+  <script>
+    function scrollGallery(direction) {
+      const track = document.getElementById('track');
+      const itemWidth = track.querySelector('.gallery-item').offsetWidth + 16; // width of one card + gap
+      const visibleItems = 4; // Number of visible items
+      const moveWidth = itemWidth * visibleItems; // Width to move per scroll
+
+      // Get current X translation
+      const currentTransform = getComputedStyle(track).transform;
+      const currentX = currentTransform !== 'none' ? new WebKitCSSMatrix(currentTransform).m41 : 0;
+
+      // Calculate new X translation
+      let newX = currentX + direction * moveWidth;
+
+      // Set boundaries
+      const maxX = 0;
+      const minX = -(track.children.length - visibleItems) * itemWidth;
+
+      if (newX > maxX) newX = maxX;
+      if (newX < minX) newX = minX;
+
+      // Apply smooth transition
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)';
+      track.style.transform = `translateX(${newX}px)`;
+    }
+  </script>
+</body>
+</html>
